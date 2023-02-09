@@ -4,8 +4,6 @@ const url = require('url');
 const querystring = require('querystring');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
-const rateLimter = require('./util/RateLimiter');
-const stats = require('./util/Stats');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
@@ -22,19 +20,15 @@ app.use((req, res, next) => {
 });
 
 app.use(cors());
-
-app.use(rateLimter);
-app.use(stats);
-
 app.use(bodyParser.json());
 
 const swaggerOptions = {
 	swaggerDefinition: {
 		info: {
-			title: 'MonkeDev - API',
-			description: 'The MonkeDev API'
+			title: 'API',
+			description: 'API'
 		},
-		servers: ['https://api.monkedev.com/']
+		servers: ['https://api-ko1d.onrender.com']
 	},
 	apis: [__dirname + '/Routes/*.js']
 };
@@ -54,9 +48,6 @@ const setFile = (dir) => {
 };
 
 const Init = async () => {
-
-	//await require('./Database/Init')();
-	//process.s = new (require('./Database/UserManager'))();
 
 	const routes = fs.readdirSync(__dirname + '/Routes');
 	routes.forEach(route => {
