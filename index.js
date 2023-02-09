@@ -55,8 +55,8 @@ const setFile = (dir) => {
 
 const Init = async () => {
 
-	await require('./Database/Init')();
-	process.s = new (require('./Database/UserManager'))();
+	//await require('./Database/Init')();
+	//process.s = new (require('./Database/UserManager'))();
 
 	const routes = fs.readdirSync(__dirname + '/Routes');
 	routes.forEach(route => {
